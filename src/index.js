@@ -1,4 +1,6 @@
 const API_URL = "https://api.coinpaprika.com/v1/tickers";
+const displayStatu = document.querySelector('.coinStatus');
+
 
 const getInfo = () => {
     const response = fetch(API_URL,{
@@ -6,22 +8,21 @@ const getInfo = () => {
     })
     .then(response => response.json())
     .then(data => {
-        //let { name } = data;
-        let i = 0;
+        console.log(`Request`);
         for (let index = 0; index < data.length; index++) {
             let element = data[index];
-            
-            console.log(element.name);
+            let { name ,quotes:{USD} } = element;
+            let {price} = USD;
+            let li = document.createElement('li');
+            displayStatu.appendChild(li);
+            li.innerHTML = `${name} : ${price}`;
         }
     })
     .catch(error => console.log(error));
 }
 
-// price : data[].quotes.USD.price;
-
 const init = () => {
-    //setInterval(getInfo,5000);
-    getInfo();
+    setInterval(getInfo,5000);
 }
 
 init();
