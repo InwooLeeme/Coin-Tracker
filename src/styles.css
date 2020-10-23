@@ -23,6 +23,35 @@ li {
   width: 150px;
 }
 
-.ESq77a {
-  color: blue;
+.loading {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 40px;
+  background-color: #74b9ff;
+  border-radius: 5px;
+}
+
+.requesting {
+  margin-right: 10px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+#rotating__logo {
+  width: 25px;
+  height: 25px;
+  animation: loading 2s infinite linear;
+  text-align: center;
+  transform-origin: 50% 50%;
+  font-size: 25px;
+  color: #ffffff;
+}
+
+@keyframes loading {
+  100% {
+    transform: rotate(360deg);
+  }
 }

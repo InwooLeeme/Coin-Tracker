@@ -4,17 +4,16 @@
     <title>Coin Tracker</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="src/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
   </head>
   <body>
     <h1>Coin Tracker!</h1>
-    <h3 class="requesting">Requesting!</h3>
+    <div class="loading">
+      <div class="requesting">Requesting</div>
+      <i id="rotating__logo" class="fas fa-spinner"></i>
+    </div>
     <main>
-      <ul class="nameInfo">Coin Name</ul>
-      <ul class="rankInfo">Rank</ul>
-      <ul class="price">Price</ul>
-      <ul class="percentChange15m">Percent_Change_15m</ul>
-      <ul class="percentChange1h">Percent_Change_1h</ul>
-      <ul class="percentChange24h">Percent_Change_24h</ul>
+      <ul class="coinInfo"></ul>
     </main>
     
     <script src="src/index.js"></script>
