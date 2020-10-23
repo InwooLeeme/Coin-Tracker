@@ -1,5 +1,6 @@
 const API_URL = "https://api.coinpaprika.com/v1/tickers";
 const coinInfo = document.querySelector('.coinInfo');
+let rankIcon;
 
 
 const getInfo = () => {
@@ -8,37 +9,50 @@ const getInfo = () => {
     })
     .then(response => response.json())
     .then(data => {
-        loadData(data)
+        data.sort((a,b) => {
+            return a.rank - b.rank;         // 오름 차순 정렬
+        });
+        data.forEach(data => {
+            loadData(data)
+        });
+        
     })
     .catch(error => console.log(error));
 }
 
 const loadData = (data) => {
-    for (let index = 0; index < data.length; index++) {
-        let element = data[index];
-        let {quotes, name} = element;
-        let {USD : {price}} = quotes;
-        console.log(name,price);
+    let element = data;
+    let {quotes, name, rank,symbol} = element;
+    let {USD : {price}} = quotes;
+    const div = document.createElement('div');
+    const coinNameSpan = document.createElement('span');
+    const rankIcon = document.createElement('div');
+    div.classList.add('coinItem');
+    coinInfo.appendChild(div);
+    div.appendChild(rankIcon);
+    div.appendChild(coinNameSpan);
+    if(rank < 4){
+        if(rank === 1){
+            rankIcon.classList.add('1st');
+            rankIcon.innerHTML = `<i class="fas fa-crown"></i> #${rank}`
+            coinNameSpan.innerHTML = `${name} is ${price}`;
+        } 
+        if(rank === 2){
+            rankIcon.classList.add('2nd');
+            rankIcon.innerHTML = `<i class="fas fa-crown"></i> #${rank}`
+            coinNameSpan.innerHTML = `${name} is ${price}`;
+        } 
+        if(rank === 3) {
+            rankIcon.classList.add('3rd');
+            rankIcon.innerHTML = `<i class="fas fa-crown"></i> #${rank}`
+            coinNameSpan.innerHTML = `${name} is ${price}`;
+        } 
+    } else{
+        rankIcon.innerHTML = `#${rank}`
+        coinNameSpan.innerHTML = `${name} is ${price}`;
     }
 }
 
-const rankAlignment = (rank) => {
-    switch (rank) {
-        case 1:
-            
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-        case 4:
-            break;
-        case 5:
-            break;
-        default:
-            break;
-    }
-}
 
 const init = async () => {
     //setInterval(await getInfo,5000);
