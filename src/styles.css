@@ -32,6 +32,7 @@ li {
   height: 40px;
   background-color: #74b9ff;
   border-radius: 5px;
+  opacity: 0;
 }
 
 .requesting {

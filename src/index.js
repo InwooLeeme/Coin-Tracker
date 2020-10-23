@@ -1,34 +1,56 @@
 const API_URL = "https://api.coinpaprika.com/v1/tickers";
 const coinInfo = document.querySelector('.coinInfo');
-let rankIcon;
-
+const loadingBar = document.querySelector('.loading');
+const coinTitle = document.querySelector('h1');
+let coinInfoUl;
 
 const getInfo = () => {
-    const response = fetch(API_URL,{
+    showLoadingBar();
+    fetch(API_URL,{
         method : 'GET'
     })
     .then(response => response.json())
     .then(data => {
+        createCoinInfoUl();
         data.sort((a,b) => {
             return a.rank - b.rank;         // 오름 차순 정렬
         });
         data.forEach(data => {
-            loadData(data)
+           loadData(data)
         });
-        
+        hideLoadingBar();
+        reNewCoinInfo();
     })
     .catch(error => console.log(error));
 }
 
+const createCoinInfoUl = () => {
+    coinInfoUl = document.createElement('ul');
+}
+
+const showLoadingBar = () => {
+    loadingBar.style.opacity = 1;
+}
+
+const hideLoadingBar = () => {
+    loadingBar.style.opacity = 0;
+}
+
+const reNewCoinInfo = () => {
+    coinInfo.innerHTML = "";
+    coinInfo.appendChild(coinInfoUl);
+    setTimeout(getInfo,5000);
+}
+
 const loadData = (data) => {
     let element = data;
-    let {quotes, name, rank,symbol} = element;
+    let {quotes, name, rank} = element;
     let {USD : {price}} = quotes;
     const div = document.createElement('div');
     const coinNameSpan = document.createElement('span');
     const rankIcon = document.createElement('div');
     div.classList.add('coinItem');
-    coinInfo.appendChild(div);
+    coinInfoUl.appendChild(div);
     div.appendChild(rankIcon);
     div.appendChild(coinNameSpan);
     if(rank < 4){
@@ -53,10 +75,8 @@ const loadData = (data) => {
     }
 }
 
-
-const init = async () => {
-    //setInterval(await getInfo,5000);
-    await getInfo();
+const init = () => {
+    getInfo();
 }
 
 init();
