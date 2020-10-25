@@ -55,17 +55,17 @@ const loadData = (data) => {
     div.appendChild(coinNameSpan);
     if(rank < 4){
         if(rank === 1){
-            rankIcon.classList.add('1st');
+            rankIcon.classList.add('first');
             rankIcon.innerHTML = `<i class="fas fa-crown"></i> #${rank}`
             coinNameSpan.innerHTML = `${name} is ${price}`;
         } 
         if(rank === 2){
-            rankIcon.classList.add('2nd');
+            rankIcon.classList.add('second');
             rankIcon.innerHTML = `<i class="fas fa-crown"></i> #${rank}`
             coinNameSpan.innerHTML = `${name} is ${price}`;
         } 
         if(rank === 3) {
-            rankIcon.classList.add('3rd');
+            rankIcon.classList.add('third');
             rankIcon.innerHTML = `<i class="fas fa-crown"></i> #${rank}`
             coinNameSpan.innerHTML = `${name} is ${price}`;
         } 

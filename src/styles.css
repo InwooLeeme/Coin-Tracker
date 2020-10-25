@@ -41,6 +41,27 @@ li {
   color: #ffffff;
 }
 
+.coinItem {
+  width: 400px;
+  height: 50px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  background-color: #b2bec3;
+  margin: 10px 0px;
+}
+
+.first i {
+  color: #fdcb6e;
+}
+
+.second i {
+  color: #bdc3c7;
+}
+
+.third i {
+  color: rgb(128, 0, 0);
+}
+
 #rotating__logo {
   width: 25px;
   height: 25px;
