@@ -46,8 +46,17 @@ li {
   height: 50px;
   border: 1px solid gray;
   border-radius: 5px;
-  background-color: #b2bec3;
+  background-color: #0984e3;
   margin: 10px 0px;
+}
+
+.coinInfoContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.coinInfoContainer div:nth-child(2) {
+  margin-left: 5px;
 }
 
 .first i {

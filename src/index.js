@@ -44,16 +44,23 @@ const reNewCoinInfo = () => {
 
 const loadData = (data) => {
     let element = data;
-    let {quotes, name, rank} = element;
+    let {quotes, name, rank, symbol} = element;
     let {USD : {price}} = quotes;
     const div = document.createElement('div');
+    const secondDiv = document.createElement('div');
     const coinNameSpan = document.createElement('span');
+    const coinSymbol = document.createElement('div');
     const rankIcon = document.createElement('div');
     div.classList.add('coinItem');
     coinInfoUl.appendChild(div);
-    div.appendChild(rankIcon);
+    div.appendChild(secondDiv);
+    secondDiv.classList.add('coinInfoContainer');
+    secondDiv.appendChild(rankIcon);
+    secondDiv.appendChild(coinSymbol);
     div.appendChild(coinNameSpan);
     if(rank < 4){
+        coinSymbol.innerHTML = `${name} [${symbol}]`;
+        coinNameSpan.classList.add('coinInfoBar');
         if(rank === 1){
             rankIcon.classList.add('first');
             rankIcon.innerHTML = `<i class="fas fa-crown"></i> #${rank}`
@@ -70,8 +77,10 @@ const loadData = (data) => {
             coinNameSpan.innerHTML = `${name} is ${price}`;
         } 
     } else{
+        coinSymbol.innerHTML = `${name}[${symbol}]`;
         rankIcon.innerHTML = `#${rank}`
         coinNameSpan.innerHTML = `${name} is ${price}`;
+        coinNameSpan.classList.add('coinInfoBar');
     }
 }
 
